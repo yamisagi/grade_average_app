@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grade_avarage_app/constants/theme_data.dart';
-import 'package:grade_avarage_app/widget/avarage_main.dart';
+import 'package:grade_avarage_app/widget/average_main.dart';
 
 void main() {
   runApp(const HomePage());
@@ -13,7 +13,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     ProductThemeData product = ProductThemeData();
     return MaterialApp(
-      home: const AvarageCalculatorApp(),
+      debugShowCheckedModeBanner: false,
+      home: const AverageCalculatorApp(),
       theme: product.themeData,
     );
   }

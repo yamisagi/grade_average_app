@@ -62,6 +62,9 @@ In this project i am trying to create an app that can calculate avarage points.
 * [x] Created [Constants](lib/constants/constants.dart) for storing constants.
 * [x] Created [ProductThemeData](lib/constants/theme_data.dart) for managing theme of app.
 * [x] Seperated [AvarageCalculatorApp](lib/widget/avarage_main.dart) for managing main screen.
+* [x] Seperated [AverageView](lib/widget/show_average.dart) for managing note screen of avarage calculator.
+* [x] Created [DataHelper](lib/data/data.dart) for managing data and used enums for notes.
+
 * I will add more steps here later. 
 
 
