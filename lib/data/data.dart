@@ -1,5 +1,4 @@
 // ignore_for_file: constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:grade_avarage_app/constants/constants.dart';
 
@@ -36,25 +35,16 @@ extension DataExtension on Data {
   }
 }
 
-List<double> _listGenerator() {
-  return List.generate(
-    10,
-    (index) => (index + 1),
-  );
-}
-
 class DataHelper {
-  static List<Data> get dataList => [
-        Data.AA,
-        Data.BA,
-        Data.BB,
-        Data.CC,
-        Data.DC,
-        Data.DD,
-        Data.FF,
-      ];
+  static List<double> _listGenerator() {
+    return List.generate(
+      5,
+      (index) => (index + 1),
+    );
+  }
+
   static List<DropdownMenuItem<double>> get dropdownMenuItems {
-    return dataList.map((data) {
+    return Data.values.map((data) {
       return DropdownMenuItem<double>(
         alignment: Constants.center,
         value: double.parse(data.value),

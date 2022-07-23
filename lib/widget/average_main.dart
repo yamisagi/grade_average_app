@@ -16,37 +16,38 @@ class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            Constants.appBarText,
-          ),
+      appBar: AppBar(
+        title: Text(
+          Constants.appBarText,
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    color: Colors.transparent,
-                    child: _buildForm(),
-                  ),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.transparent,
+                  child: _buildForm(),
                 ),
-                const Expanded(
-                  flex: 1,
-                  child: AverageView(average: 0, lessonCount: 0),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Container(
-                color: Colors.blue,
-                child: const Text('Form Widget 2'),
               ),
+              const Expanded(
+                flex: 1,
+                child: AverageView(average: 0, lessonCount: 0),
+              ),
+            ],
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.blue,
+              child: const Placeholder(),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 
   Form _buildForm() {
@@ -58,9 +59,11 @@ class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
           Row(
             children: [
               DropDownView(
+                hint: Constants.dropdownHint,
                 item: DataHelper.dropdownMenuItems,
               ),
               DropDownView(
+                hint: Constants.dropDownHintCredit,
                 item: DataHelper.dropDownMenuItemCredit,
               )
             ],

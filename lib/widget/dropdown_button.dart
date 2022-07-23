@@ -1,12 +1,15 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:grade_avarage_app/constants/constants.dart';
 
 class DropDownView extends StatefulWidget {
   final List<DropdownMenuItem<double>> item;
+  final String hint;
 
-  const DropDownView({Key? key, required this.item}) : super(key: key);
+  const DropDownView({
+    Key? key,
+    required this.item,
+    required this.hint,
+  }) : super(key: key);
 
   @override
   State<DropDownView> createState() => _DropDownViewState();
@@ -31,7 +34,7 @@ class _DropDownViewState extends State<DropDownView> {
         child: DropdownButton<double>(
           alignment: Constants.center,
           hint: Text(
-            Constants.dropdownHint,
+            widget.hint,
             style: TextStyle(
               color: Constants.fillColor,
             ),
@@ -42,7 +45,7 @@ class _DropDownViewState extends State<DropDownView> {
           items: widget.item,
           onChanged: ((value) {
             setState(() {
-              inspect(value);
+              //inspect(value);
               _selectedValue = value;
             });
           }),
