@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:grade_avarage_app/constants/constants.dart';
 
 enum Data {
   AA,
@@ -35,6 +36,13 @@ extension DataExtension on Data {
   }
 }
 
+List<double> _listGenerator() {
+  return List.generate(
+    10,
+    (index) => (index + 1),
+  );
+}
+
 class DataHelper {
   static List<Data> get dataList => [
         Data.AA,
@@ -48,9 +56,24 @@ class DataHelper {
   static List<DropdownMenuItem<double>> get dropdownMenuItems {
     return dataList.map((data) {
       return DropdownMenuItem<double>(
+        alignment: Constants.center,
         value: double.parse(data.value),
         child: Text(data.name),
       );
     }).toList();
+  }
+
+  static List<DropdownMenuItem<double>> get dropDownMenuItemCredit {
+    return _listGenerator()
+        .map(
+          (double credit) => DropdownMenuItem<double>(
+            alignment: Constants.center,
+            value: credit,
+            child: Text(
+              credit.toStringAsFixed(2),
+            ),
+          ),
+        )
+        .toList();
   }
 }

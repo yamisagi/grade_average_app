@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grade_avarage_app/constants/constants.dart';
 import 'package:grade_avarage_app/data/data.dart';
+import 'package:grade_avarage_app/widget/dropdown_button.dart';
 import 'package:grade_avarage_app/widget/show_average.dart';
 
 class AverageCalculatorApp extends StatefulWidget {
@@ -11,7 +12,6 @@ class AverageCalculatorApp extends StatefulWidget {
 }
 
 class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
-  double? _selectedValue = 4;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,12 @@ class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
           _buildTextFormField(),
           Row(
             children: [
-              _buildPoints(),
+              DropDownView(
+                item: DataHelper.dropdownMenuItems,
+              ),
+              DropDownView(
+                item: DataHelper.dropDownMenuItemCredit,
+              )
             ],
           )
         ],
@@ -65,40 +70,15 @@ class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
     );
   }
 
-  TextFormField _buildTextFormField() {
-    return TextFormField(
-      decoration: InputDecoration(
-        fillColor: Constants.fillColor,
-        filled: true,
-        labelText: 'Enter your name',
-        hintText: 'Enter your name',
-        border: Constants.textFormFieldBorder,
-      ),
-    );
-  }
-
-  Padding _buildPoints() {
+  Padding _buildTextFormField() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        padding: Constants.dropdownPadding,
-        decoration: BoxDecoration(
-          color: Constants.fillColor as Color,
-          border: Border.all(
-            color: Constants.fillColor as Color,
-            width: 2,
-          ),
-          borderRadius: Constants.dropdownRadius,
-        ),
-        child: DropdownButton<double>(
-          underline: const SizedBox(),
-          value: _selectedValue,
-          items: DataHelper.dropdownMenuItems,
-          onChanged: ((value) {
-            setState(() {
-              _selectedValue = value;
-            });
-          }),
+      padding: Constants.regularPadding,
+      child: TextFormField(
+        decoration: InputDecoration(
+          fillColor: Constants.fillColor?.withOpacity(0.5),
+          filled: true,
+          labelText: 'Ders adı giriniz',
+          border: Constants.textFormFieldBorder,
         ),
       ),
     );
