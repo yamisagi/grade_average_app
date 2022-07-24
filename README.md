@@ -68,8 +68,9 @@ In this project i am trying to create an app that can calculate avarage points.
 * [x] Created [DropDownView](lib/widget/dropdown_button.dart) reusable widget.
 * [x] Improved [AverageCalculatorApp](lib/widget/average_main.dart) for passing data from [DropDownView](lib/widget/dropdown_button.dart).
 * [x] Improved [DataHelper](lib/data/data.dart) like calculating average and created all lessons list etc.
-
-* I will add more steps here later. 
+* [x] Created [LessonList](lib/widget/lesson_list.dart) for managing list of lessons.
+* [x] Improved [LessonList](lib/widget/lesson_list.dart) with [Dismissible](https://api.flutter.dev/flutter/widgets/Dismissible-class.html#:~:text=Dismissible%20class%20Null%20safety,to%20slide%20out%20of%20view.).
+* [x] All done.
 
 
 

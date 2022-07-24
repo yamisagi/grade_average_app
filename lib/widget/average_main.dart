@@ -5,6 +5,7 @@ import 'package:grade_avarage_app/constants/constants.dart';
 import 'package:grade_avarage_app/data/data.dart';
 import 'package:grade_avarage_app/model/lesson_model.dart';
 import 'package:grade_avarage_app/widget/dropdown_button.dart';
+import 'package:grade_avarage_app/widget/lesson_list.dart';
 import 'package:grade_avarage_app/widget/show_average.dart';
 
 class AverageCalculatorApp extends StatefulWidget {
@@ -57,9 +58,12 @@ class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
             ],
           ),
           Expanded(
-            child: Container(
-              color: Colors.blue,
-              child: const Placeholder(),
+            child: LessonList(
+              onDismiss: (index) {
+                setState(() {
+                  DataHelper.allLessons.removeAt(index);
+                });
+              },
             ),
           ),
         ],

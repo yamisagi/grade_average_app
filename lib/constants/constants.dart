@@ -10,6 +10,9 @@ class Constants {
   static const dropDownHintCredit = 'Krediler';
   static final averageText = Text('Ortalama', style: lessonTextTheme);
   static const emptyFieldError = 'Ders adı boş olamaz.';
+  static final emptyNotes = Text('Ders giriniz',
+      style:
+          titleTextTheme.copyWith(fontSize: 30, fontWeight: FontWeight.bold));
   //-----------------TEXTSTYLES-----------------//
   static final titleTextTheme = GoogleFonts.quicksand(
     textStyle: const TextStyle(
