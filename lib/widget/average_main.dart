@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:grade_avarage_app/constants/constants.dart';
 import 'package:grade_avarage_app/data/data.dart';
+import 'package:grade_avarage_app/model/lesson_model.dart';
 import 'package:grade_avarage_app/widget/dropdown_button.dart';
 import 'package:grade_avarage_app/widget/show_average.dart';
 
@@ -13,6 +16,17 @@ class AverageCalculatorApp extends StatefulWidget {
 
 class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
   final _formKey = GlobalKey<FormState>();
+  final DropDownView letter = DropDownView(
+    hint: Constants.dropdownHint,
+    item: DataHelper.dropdownMenuItems,
+  );
+  final DropDownView credit = DropDownView(
+    hint: Constants.dropDownHintCredit,
+    item: DataHelper.dropDownMenuItemCredit,
+  );
+
+  String? _selectedValue;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +47,12 @@ class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
                   child: _buildForm(),
                 ),
               ),
-              const Expanded(
+              Expanded(
                 flex: 1,
-                child: AverageView(average: 0, lessonCount: 0),
+                child: AverageView(
+                  average: DataHelper.calculateAverage(DataHelper.allLessons),
+                  lessonCount: DataHelper.allLessons.length,
+                ),
               ),
             ],
           ),
@@ -58,14 +75,30 @@ class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
           _buildTextFormField(),
           Row(
             children: [
-              DropDownView(
-                hint: Constants.dropdownHint,
-                item: DataHelper.dropdownMenuItems,
+              letter,
+              credit,
+              Expanded(
+                child: IconButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        _formKey.currentState!.save();
+                        Lesson lesson = Lesson(
+                            lessonCredit: credit.selectedValue ?? 0,
+                            lessonLetter: letter.selectedValue ?? 0,
+                            lessonName: _selectedValue ?? '');
+                        DataHelper.addLesson(lesson);
+
+                        /// Resetting the form
+                        _formKey.currentState!.reset();
+                        inspect(
+                            DataHelper.calculateAverage(DataHelper.allLessons));
+                      });
+                    }
+                  },
+                  icon: const Icon(Icons.arrow_forward_ios_outlined),
+                ),
               ),
-              DropDownView(
-                hint: Constants.dropDownHintCredit,
-                item: DataHelper.dropDownMenuItemCredit,
-              )
             ],
           )
         ],
@@ -77,6 +110,15 @@ class _AverageCalculatorAppState extends State<AverageCalculatorApp> {
     return Padding(
       padding: Constants.regularPadding,
       child: TextFormField(
+        onSaved: (newValue) {
+          _selectedValue = newValue;
+        },
+        validator: ((value) {
+          if (value == null || value.isEmpty) {
+            return Constants.emptyFieldError;
+          }
+          return null;
+        }),
         decoration: InputDecoration(
           fillColor: Constants.fillColor?.withOpacity(0.5),
           filled: true,

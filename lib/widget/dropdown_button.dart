@@ -1,22 +1,26 @@
+// ignore_for_file: must_be_immutable
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:grade_avarage_app/constants/constants.dart';
 
 class DropDownView extends StatefulWidget {
-  final List<DropdownMenuItem<double>> item;
+  List<DropdownMenuItem<double>>? item;
   final String hint;
+  double? selectedValue;
 
-  const DropDownView({
+  DropDownView({
     Key? key,
-    required this.item,
+    this.item,
     required this.hint,
   }) : super(key: key);
 
   @override
-  State<DropDownView> createState() => _DropDownViewState();
+  State<DropDownView> createState() => DropDownViewState();
 }
 
-class _DropDownViewState extends State<DropDownView> {
-  double? _selectedValue;
+class DropDownViewState extends State<DropDownView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,12 +45,12 @@ class _DropDownViewState extends State<DropDownView> {
           ),
           style: Constants.lessonTextTheme,
           underline: const SizedBox(),
-          value: _selectedValue,
+          value: widget.selectedValue,
           items: widget.item,
           onChanged: ((value) {
             setState(() {
-              //inspect(value);
-              _selectedValue = value;
+              inspect(value);
+              widget.selectedValue = value;
             });
           }),
         ),

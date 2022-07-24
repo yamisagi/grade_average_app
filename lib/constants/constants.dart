@@ -9,6 +9,7 @@ class Constants {
   static const dropdownHint = 'Harfler';
   static const dropDownHintCredit = 'Krediler';
   static final averageText = Text('Ortalama', style: lessonTextTheme);
+  static const emptyFieldError = 'Ders adı boş olamaz.';
   //-----------------TEXTSTYLES-----------------//
   static final titleTextTheme = GoogleFonts.quicksand(
     textStyle: const TextStyle(
@@ -31,7 +32,7 @@ class Constants {
   static final generalRadius = BorderRadius.circular(25);
   static final dropdownRadius = BorderRadius.circular(10);
   static const dropdownPadding =
-      EdgeInsets.symmetric(horizontal: 10, vertical: 5);
+      EdgeInsets.symmetric(horizontal: 5, vertical: 5);
   static const regularPadding = EdgeInsets.all(8.0);
   //-----------------BORDER-----------------//
   static final textFormFieldBorder = OutlineInputBorder(

@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:grade_avarage_app/constants/constants.dart';
+import 'package:grade_avarage_app/model/lesson_model.dart';
 
 enum Data {
   AA,
@@ -36,11 +37,29 @@ extension DataExtension on Data {
 }
 
 class DataHelper {
+  static List<Lesson> allLessons = [];
+  static addLesson(Lesson lesson) {
+    allLessons.add(lesson);
+    
+  }
+
+  static double calculateAverage(List<Lesson> lessons) {
+    double average = 0;
+    int lessonCount = 0;
+    for (final lesson in lessons) {
+      average += lesson.lessonLetter * lesson.lessonCredit;
+      lessonCount += lesson.lessonCredit.toInt();
+    }
+    return average / lessonCount;
+  }
+
   static List<double> _listGenerator() {
     return List.generate(
       5,
-      (index) => (index + 1),
-    );
+      (index) => (index + 1).toDouble(),
+    )
+      ..reversed
+      ..toList();
   }
 
   static List<DropdownMenuItem<double>> get dropdownMenuItems {
